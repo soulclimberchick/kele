@@ -1,5 +1,6 @@
 require './lib/kele'
 require 'httparty'
+require 'json'
 
 class Kele
   include HTTParty
@@ -14,5 +15,10 @@ class Kele
     else
       puts 'Welcome'
     end
+  end
+
+  def get_me
+    response = self.class.get('/users/me', headers: { "authorization" => @auth })
+    JSON.parse(response.body)
   end
 end
