@@ -1,10 +1,12 @@
 require 'httparty'
 require 'json'
-require_relative 'roadmap'
+require './lib/roadmap'
+require './lib/messaging'
 
 class Kele
   include HTTParty
 	include Roadmap
+  include Messaging
 
  	base_uri "https://www.bloc.io/api/v1/"
 
@@ -14,23 +16,11 @@ class Kele
  		@auth_token = response["auth_token"]
  	end
 
-<<<<<<< HEAD
-  def get_me
- 		response = self.class.get(base_api_url("users/me"), headers: { "authorization" => @auth_token })
- 		JSON.parse(response.body)
- 	end
-
-  def get_mentor_availability(id)
- 		response = self.class.get(base_api_url("mentors/#{id}/student_availability"), headers: { "authorization" => @auth_token })
- 		JSON.parse(response.body)
- 	end
-end
-=======
  	def get_me
  		response = self.class.get(base_api_url("users/me"), headers: { "authorization" => @auth_token })
  		JSON.parse(response.body)
  	end
- 
+
  	def get_mentor_availability(id)
  		response = self.class.get(base_api_url("mentors/#{id}/student_availability"), headers: { "authorization" => @auth_token })
  		JSON.parse(response.body)
@@ -41,4 +31,3 @@ end
  		"https://www.bloc.io/api/v1/#{endpoint}"
  	end
  end
->>>>>>> checkpoint-5-roadmap-and-checkpoints
