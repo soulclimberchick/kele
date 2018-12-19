@@ -8,4 +8,9 @@ module Roadmap
 		response = self.class.get(base_api_url("checkpoints/#{id}"), headers: { "authorization" => @auth_token })
 		JSON.parse(response.body)
 	end
+
+	def get_remaining_checkpoints(id)
+		response = self.class.get(base_api_url("checkpoints/#{id}"), headers: { "authorization" => @auth_token })
+		JSON.parse(response.body)
+	end
 end
